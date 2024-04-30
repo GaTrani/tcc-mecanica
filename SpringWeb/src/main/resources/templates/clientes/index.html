@@ -1,0 +1,68 @@
+<div th:replace="~{compartilhado/topo}"></div>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Clientes</h1>
+    <p class="mb-4">Aqui terá uma tabela para mostrar os Clientes</a>.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="/clientes/novo" class="btn btn-primary" style="margin-right: 20px;">Novo</a>
+            <h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">Clientes</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Endereço</th>
+                            <th>Nº</th>
+                            <th>Cidade</th>
+                            <th>Bairro</th>
+                            <th colspan="2">Ações</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Endereço</th>
+                            <th>Nº</th>
+                            <th>Cidade</th>
+                            <th>Bairro</th>
+                            <th colspan="2">Ações</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr th:each="cliente : ${clientes}">
+                            <td th:text="${cliente.id}"></td>
+                            <td th:text="${cliente.nome}"></td>
+                            <td th:text="${cliente.telefone}"></td>
+                            <td th:text="${cliente.email}"></td>
+                            <td th:text="${cliente.endereco}"></td>
+                            <td th:text="${cliente.numero}"></td>
+                            <td th:text="${cliente.cidade}"></td>
+                            <td th:text="${cliente.bairro}"></td>
+                            <td><a th:href="@{'/clientes/' + ${cliente.id}}" class="fas fa-fw fa-solid fa-pen"></td>
+                            <td><a href="#" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/clientes/{id}(id=${cliente.id})} + '/excluir\' } '">
+                                    <i class="fas fa-trash-alt d-flex align-items-center justify-content-center" style="color: #E74A3B"></i>
+                                    <!--style="color: #E74A3B"
+                                        class="align-items-center"-->
+                                </a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+<div th:replace="~{compartilhado/baixo}"></div>

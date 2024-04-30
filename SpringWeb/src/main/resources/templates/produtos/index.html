@@ -1,0 +1,61 @@
+<div th:replace="~{compartilhado/topo}"></div>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Produtos</h1>
+    <p class="mb-4">Aqui terá uma tabela para mostrar os Produtos.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="/produtos/novo" class="btn btn-primary" style="margin-right: 20px;">Novo</a>
+            <h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">Produtos</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Produto</th>
+                            <th>Fornecedor</th>
+                            <th>Qtd.</th>
+                            <th>Preço Venda</th>
+                            <th>SKU</th>
+                            <th colspan="2">Ações</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Produto</th>
+                            <th>Fornecedor</th>
+                            <th>Qtd.</th>
+                            <th>Preço Venda</th>
+                            <th>SKU</th>
+                            <th colspan="2">Ações</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr th:each="produto : ${produtos}">
+                            <td th:text="${produto.id}"></td>
+                            <td th:text="${produto.produto}"></td>
+                            <td th:text="${produto.fornecedor}"></td>
+                            <td th:text="${produto.quantidade}"></td>
+                            <td th:text="${produto.precoVenda}"></td>
+                            <td th:text="${produto.sku}"></td>
+                            <td><a th:href="@{'/produtos/' + ${produto.id}}" class="fas fa-solid fa-pen d-flex align-items-center justify-content-center"></td>
+                            <td><a href="#" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/produtos/{id}(id=${produto.id})} + '/excluir\' } '">
+                                    <i class="fas fa-trash-alt d-flex align-items-center justify-content-center" style="color: #E74A3B"></i>
+                                    <!--style="color: #E74A3B"-->
+                                </a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+<div th:replace="~{compartilhado/baixo}"></div>
